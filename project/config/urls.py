@@ -26,4 +26,5 @@ urlpatterns = [
     path("fecha_hora/", fecha_hora),
     path("tirar_dados/", tirar_dados),
     path("", include('core.urls')),
+    path("clientes/", include('cliente.urls')),
 ]
