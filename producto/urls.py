@@ -13,6 +13,8 @@ urlpatterns = [
     path("productocategoria/create/", views.ProductoCategoriaCreate.as_view(), name="productocategoria_create"),
     # Detail necesita un pk de la base de datos para hacer la consulta
     path("productocategoria/detail/<int:pk>/", views.ProductoCategoriaDetail.as_view(), name="productocategoria_detail"),
-    path("productocategoria/update/<int:pk>/", views.ProductoCategoriaUpdate.as_view(), name="productocategoria_update"),
-    path("productocategoria/delete/<int:pk>/", views.ProductocategoriaDelete.as_view(), name="productocategoria_delete"),
+    # path("productocategoria/update/<int:pk>/", views.ProductoCategoriaUpdate.as_view(), name="productocategoria_update"),
+    path("productocategoria/update/<int:pk>/", views.productocategoria_update, name="productocategoria_update"),
+    #path("productocategoria/delete/<int:pk>/", views.ProductocategoriaDelete.as_view(), name="productocategoria_delete"),
+    path("productocategoria/delete/<int:pk>/", views.productocategoria_delete, name="productocategoria_delete"),
 ]

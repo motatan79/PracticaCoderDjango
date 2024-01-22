@@ -1,6 +1,6 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import *
 from .forms import *
@@ -47,14 +47,45 @@ class ProductoCategoriaDetail(DetailView):
     model = ProductoCategoria
     # template_name = "producto/productocategoria_detail.html"
 
+# Ahpra con funciones 
+def productocategoria_detail(request, pk):
+    consulta = ProductoCategoria.objects.get(id=pk)
+    return render(request, "producto/productocategoria_detail.html", {"object": consulta})
+
+
+
+
 # Para Actualizar    
 class ProductoCategoriaUpdate(UpdateView):
     model = ProductoCategoria
     success_url = reverse_lazy("producto:productocategoria_list")
     fields = "__all__"
     
+# PAra hacer un update de productocategoria
+
+def productocategoria_update(request, pk):
+    consulta = ProductoCategoria.objects.get(id=pk)
+    if request.method == "POST":
+        form = ProductoCategoriaForm(request.POST, instance=consulta)
+        if form.is_valid():
+            form.save()
+            return redirect("producto:productocategoria_list")
+    else:
+        form = ProductoCategoriaForm(instance=consulta)
+    return render(request, "producto/productocategoria_update.html", {"form": form})    
+    
+
 class ProductocategoriaDelete(DeleteView):
     model = ProductoCategoria
     success_url = reverse_lazy("producto:productocategoria_list")
     fields = "__all__"
     
+# Usando funciones 
+def productocategoria_delete(request, pk):
+    consulta = ProductoCategoria.objects.get(id=pk)
+    if request.method == "POST":
+        consulta.delete()
+        return redirect("producto:productocategoria_list")
+    return render(request, "producto/productocategoria_confirm_delete.html", {"object": consulta})
+
+
