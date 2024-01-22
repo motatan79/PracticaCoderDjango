@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+    Detalle de Categoria de Productos
+{% endblock title %}
+
+{% block content %}
+    <!--¿Cómo hacer una consulta?-->
+
+    <h1>Detalle de Categoría de Productos</h1>
+    <ul>
+        <li>{{ object.id }}</li>
+        <li>{{ object.nombre }}</li>
+        <li>{{ object.descripcion }}</li>
+    </ul>
+{% endblock content %}

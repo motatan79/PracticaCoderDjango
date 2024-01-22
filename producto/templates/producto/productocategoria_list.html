@@ -16,7 +16,13 @@
     </div>
     {% for object in object_list %}
         <ul>
-            <li>{{ object }} - {{ object.nombre }}</li>
+            <li>{{ object.nombre }}
+                <a href="{% url 'producto:productocategoria_detail' object.id %}">Ver en detalle</a>
+                <!--Para Actualizar o Eliminar hay que crear dos -->
+                <a href="{% url 'producto:productocategoria_update' object.id %}">Modificar</a>
+                <a href="{% url 'producto:productocategoria_delete' object.id %}">Borrar</a>
+                
+            </li>
         </ul>
     {% endfor %}
 {% endblock content %}

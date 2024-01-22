@@ -3,6 +3,9 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import *
+from .forms import *
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 def index(request):
@@ -16,7 +19,8 @@ def index(request):
     
 # Listas basadas en clases 
 
-class ProductocategoriaList(ListView):
+# Para obtener una lista 
+class ProductoCategoriaList(ListView):
     model = ProductoCategoria
     # Django sabe a que vista es la lista porque es el nombre de la clase que contiene el url
     # template_name = "producto/productocategoria_list.html"
@@ -29,3 +33,28 @@ class ProductocategoriaList(ListView):
                 nombre__icontains = self.request.GET.get("consulta")
             )
         return self.model.objects.all()
+ 
+ # Para crear una lista    
+class ProductoCategoriaCreate(CreateView):
+    model = ProductoCategoria
+    forms_class = ProductoCategoriaForm
+    success_url = reverse_lazy("producto:productocategoria_list")
+    fields = "__all__"
+
+
+# Para ver en detalle 
+class ProductoCategoriaDetail(DetailView):
+    model = ProductoCategoria
+    # template_name = "producto/productocategoria_detail.html"
+
+# Para Actualizar    
+class ProductoCategoriaUpdate(UpdateView):
+    model = ProductoCategoria
+    success_url = reverse_lazy("producto:productocategoria_list")
+    fields = "__all__"
+    
+class ProductocategoriaDelete(DeleteView):
+    model = ProductoCategoria
+    success_url = reverse_lazy("producto:productocategoria_list")
+    fields = "__all__"
+    

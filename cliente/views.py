@@ -18,7 +18,7 @@ def cliente_list(request):
     context = {"clientes": clientes}
     return render(request, "cliente/cliente_list.html", context)
 
-
+# Para hacer un requerimiento en la base de datos
 def cliente_create(request):
     if request.method == "POST":
         form = forms.ClienteForm(request.POST)
@@ -28,3 +28,5 @@ def cliente_create(request):
     else:  # if request.method == "GET":
         form = forms.ClienteForm()
     return render(request, "cliente/cliente_create.html", {"form": form})
+
+

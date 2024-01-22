@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+    Eliminar Categoria de Productos
+{% endblock title %}
+
+{% block content %}
+    <!--¿Cómo hacer una consulta?-->
+
+    <h1>Eliminar Categoría de Productos</h1>
+    
+    <p class ="fs-5 fst-italic">¿Desea eliminar la Categoría de Productos {{ object }}?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="d-grid gap-3">
+            <button class="btn btn-danger" type="submit">Confirmar</button>
+        </div>
+    </form>
+
+
+
+{% endblock content %}
